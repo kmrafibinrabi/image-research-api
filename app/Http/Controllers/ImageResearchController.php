@@ -29,7 +29,9 @@ class ImageResearchController extends Controller
                 'question' => $question
             ]);
 
-            $response = Http::withHeaders([
+            $response = Http::withOptions([
+                'verify' => false,
+            ])->withHeaders([
                 'Authorization' => 'Bearer ' . env('OPENAI_API_KEY'),
                 'Content-Type' => 'application/json'
             ])->post('https://api.openai.com/v1/chat/completions', [
